@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 
 class TennisGame1:
-
-    def __init__(self, player1Name, player2Name):
-        self.player1Name = player1Name
-        self.player2Name = player2Name
-        self.p1points = 0
-        self.p2points = 0
+    def __init__(self, player_1_name, player_2_name):
+        self.player_1_name = player_1_name
+        self.player_2_name = player_2_name
+        self.player_1_points = 0
+        self.player_2_points = 0
 
     def won_point(self, playerName):
-        if playerName == self.player1Name:
-            self.p1points += 1
+        if playerName == self.player_1_name:
+            self.player_1_points += 1
         else:
-            self.p2points += 1
+            self.player_2_points += 1
 
     def score(self):
         default_score_name = {
@@ -33,19 +32,19 @@ class TennisGame1:
 
         result = ""
         # Handling special case
-        if self.p1points == self.p2points:
-            result = tie_score_name.get(self.p1points, "Deuce")
-        elif self.p1points <= 3 and self.p2points <= 3:
-            result = "%s-%s" % (default_score_name[self.p1points], default_score_name[self.p2points])
+        if self.player_1_points == self.player_2_points:
+            result = tie_score_name.get(self.player_1_points, "Deuce")
+        elif self.player_1_points <= 3 and self.player_2_points <= 3:
+            result = "%s-%s" % (default_score_name[self.player_1_points], default_score_name[self.player_2_points])
         else:
-            if self.p1points - self.p2points == 1:
-                result = advantage_phrase % self.player1Name
-            elif self.p2points - self.p1points == 1:
-                result = advantage_phrase % self.player2Name
-            elif self.p1points - self.p2points >= 2:
-                result = winning_phrase % self.player1Name
+            if self.player_1_points - self.player_2_points == 1:
+                result = advantage_phrase % self.player_1_name
+            elif self.player_2_points - self.player_1_points == 1:
+                result = advantage_phrase % self.player_2_name
+            elif self.player_1_points - self.player_2_points >= 2:
+                result = winning_phrase % self.player_1_name
             else:
-                result = winning_phrase % self.player2Name
+                result = winning_phrase % self.player_2_name
 
         return result
 
