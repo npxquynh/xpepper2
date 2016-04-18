@@ -90,15 +90,13 @@ class TennisGame2:
             result = player_1_points_result + "-" + player_2_points_result
             return result
 
-        if self.player_1_points > self.player_2_points and self.player_2_points >= 3:
+        if (self.player_1_points - self.player_2_points) == 1:
             result = "Advantage " + self.player_1_name
-
-        if self.player_2_points > self.player_1_points and self.player_1_points >= 3:
+        elif (self.player_2_points - self.player_1_points) == 1:
             result = "Advantage " + self.player_2_name
-
-        if self.player_1_points >= 4 and (self.player_1_points-self.player_2_points) >= 2:
+        elif (self.player_1_points - self.player_2_points) >= 2:
             result = "Win for " + self.player_1_name
-        if self.player_2_points >= 4 and (self.player_2_points-self.player_1_points) >= 2:
+        else:
             result = "Win for " + self.player_2_name
         return result
 
