@@ -161,22 +161,22 @@ class TennisGame3:
             self.player_2_points += 1
 
     def score(self):
+        point_name = ["Love", "Fifteen", "Thirty", "Forty"]
         if (self.player_1_points < 4 and self.player_2_points < 4) and (self.player_1_points + self.player_2_points < 6):
-            p = ["Love", "Fifteen", "Thirty", "Forty"]
-            s = p[self.player_1_points]
+            output = point_name[self.player_1_points]
             if (self.player_1_points == self.player_2_points):
-                return s + "-All"
+                return output + "-All"
             else:
-                return s + "-" + p[self.player_2_points]
+                return output + "-" + point_name[self.player_2_points]
         else:
             if (self.player_1_points == self.player_2_points):
                 return "Deuce"
             if self.player_1_points > self.player_2_points:
-                s = self.player_1_name
+                output = self.player_1_name
             else:
-                s = self.player_2_name
+                output = self.player_2_name
 
             if ((self.player_1_points-self.player_2_points)*(self.player_1_points-self.player_2_points) == 1):
-                return "Advantage " + s
+                return "Advantage " + output
             else:
-                return "Win for " + s
+                return "Win for " + output
