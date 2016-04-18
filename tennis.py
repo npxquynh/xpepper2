@@ -14,36 +14,42 @@ class TennisGame1:
             self.player_2_points += 1
 
     def score(self):
+        if self.player_1_points == self.player_2_points:
+            result = self._tie_score()
+        elif self.player_1_points <= 3 and self.player_2_points <= 3:
+            result = self._starting_score()
+        elif abs(self.player_1_points - self.player_2_points) == 1:
+            result = self._advantage_score()
+        else:
+            result = self._winning_score()
+
+        return result
+
+    def _tie_score(self):
+        tie_score_name = {
+            0 : "Love-All",
+            1 : "Fifteen-All",
+            2 : "Thirty-All",
+        }
+        return tie_score_name.get(self.player_1_points, "Deuce")
+
+    def _starting_score(self):
         default_score_name = {
             0 : "Love",
             1 : "Fifteen",
             2 : "Thirty",
             3 : "Forty",
         }
-
-        tie_score_name = {
-            0 : "Love-All",
-            1 : "Fifteen-All",
-            2 : "Thirty-All",
-        }
-
-        advantage_phrase = "Advantage %s"
-        winning_phrase = "Win for %s"
-
-        result = ""
-        # Handling special case
-        if self.player_1_points == self.player_2_points:
-            result = tie_score_name.get(self.player_1_points, "Deuce")
-        elif self.player_1_points <= 3 and self.player_2_points <= 3:
-            result = "%s-%s" % (default_score_name[self.player_1_points],
+        return "%s-%s" % (default_score_name[self.player_1_points],
                                 default_score_name[self.player_2_points])
-        else:
-            if abs(self.player_1_points - self.player_2_points) == 1:
-                result = advantage_phrase % self._get_higher_score_player()
-            elif abs(self.player_1_points - self.player_2_points) >= 2:
-                result = winning_phrase % self._get_higher_score_player()
 
-        return result
+    def _advantage_score(self):
+        advantage_phrase = "Advantage %s"
+        return advantage_phrase % self._get_higher_score_player()
+
+    def _winning_score(self):
+        winning_phrase = "Win for %s"
+        return winning_phrase % self._get_higher_score_player()
 
     def _get_higher_score_player(self):
         if self.player_1_points > self.player_2_points:
