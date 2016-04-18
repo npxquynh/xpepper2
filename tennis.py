@@ -164,9 +164,19 @@ class TennisGame3:
         if (self.player_1_points < 4 and self.player_2_points < 4) and (self.player_1_points + self.player_2_points < 6):
             p = ["Love", "Fifteen", "Thirty", "Forty"]
             s = p[self.player_1_points]
-            return s + "-All" if (self.player_1_points == self.player_2_points) else s + "-" + p[self.player_2_points]
+            if (self.player_1_points == self.player_2_points):
+                return s + "-All"
+            else:
+                return s + "-" + p[self.player_2_points]
         else:
             if (self.player_1_points == self.player_2_points):
                 return "Deuce"
-            s = self.player_1_name if self.player_1_points > self.player_2_points else self.player_2_name
-            return "Advantage " + s if ((self.player_1_points-self.player_2_points)*(self.player_1_points-self.player_2_points) == 1) else "Win for " + s
+            if self.player_1_points > self.player_2_points:
+                s = self.player_1_name
+            else:
+                s = self.player_2_name
+
+            if ((self.player_1_points-self.player_2_points)*(self.player_1_points-self.player_2_points) == 1):
+                return "Advantage " + s
+            else:
+                return "Win for " + s
