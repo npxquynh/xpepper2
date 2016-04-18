@@ -35,18 +35,21 @@ class TennisGame1:
         if self.player_1_points == self.player_2_points:
             result = tie_score_name.get(self.player_1_points, "Deuce")
         elif self.player_1_points <= 3 and self.player_2_points <= 3:
-            result = "%s-%s" % (default_score_name[self.player_1_points], default_score_name[self.player_2_points])
+            result = "%s-%s" % (default_score_name[self.player_1_points],
+                                default_score_name[self.player_2_points])
         else:
-            if self.player_1_points - self.player_2_points == 1:
-                result = advantage_phrase % self.player_1_name
-            elif self.player_2_points - self.player_1_points == 1:
-                result = advantage_phrase % self.player_2_name
-            elif self.player_1_points - self.player_2_points >= 2:
-                result = winning_phrase % self.player_1_name
-            else:
-                result = winning_phrase % self.player_2_name
+            if abs(self.player_1_points - self.player_2_points) == 1:
+                result = advantage_phrase % self._get_higher_score_player()
+            elif abs(self.player_1_points - self.player_2_points) >= 2:
+                result = winning_phrase % self._get_higher_score_player()
 
         return result
+
+    def _get_higher_score_player(self):
+        if self.player_1_points > self.player_2_points:
+            return self.player_1_name
+        else:
+            return self.player_2_name
 
 
 class TennisGame2:
