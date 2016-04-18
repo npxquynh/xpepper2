@@ -176,7 +176,7 @@ class TennisGame3:
             else:
                 output = self.player_2_name
 
-            if ((self.player_1_points-self.player_2_points)*(self.player_1_points-self.player_2_points) == 1):
+            if (abs(self.player_1_points-self.player_2_points) == 1):
                 return "Advantage " + output
             else:
                 return "Win for " + output
