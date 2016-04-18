@@ -66,62 +66,29 @@ class TennisGame2:
             self._increase_player_2_point()
 
     def score(self):
+        score_name = {
+            0: "Love",
+            1: "Fifteen",
+            2: "Thirty",
+            3: "Forty"
+        }
         result = ""
-        if self.player_1_points == self.player_2_points and self.player_1_points < 3:
-            if self.player_1_points == 0:
-                result = "Love"
-            if self.player_1_points == 1:
-                result = "Fifteen"
-            if self.player_1_points == 2:
-                result = "Thirty"
-            result += "-All"
-        if self.player_1_points == self.player_2_points and self.player_1_points>2:
-            result = "Deuce"
+        if self.player_1_points == self.player_2_points:
+            if self.player_1_points < 3:
+                result = score_name[self.player_1_points]
+                result += "-All"
+            else:
+                result = "Deuce"
 
-        player_1_pointsres = ""
-        player_2_pointsres = ""
-        if self.player_1_points > 0 and self.player_2_points == 0:
-            if self.player_1_points == 1:
-                player_1_pointsres = "Fifteen"
-            if self.player_1_points == 2:
-                player_1_pointsres = "Thirty"
-            if self.player_1_points == 3:
-                player_1_pointsres = "Forty"
+            return result
 
-            player_2_pointsres = "Love"
-            result = player_1_pointsres + "-" + player_2_pointsres
-        if self.player_2_points > 0 and self.player_1_points == 0:
-            if self.player_2_points == 1:
-                player_2_pointsres = "Fifteen"
-            if self.player_2_points == 2:
-                player_2_pointsres = "Thirty"
-            if self.player_2_points == 3:
-                player_2_pointsres = "Forty"
-
-            player_1_pointsres = "Love"
-            result = player_1_pointsres + "-" + player_2_pointsres
-
-
-        if self.player_1_points>self.player_2_points and self.player_1_points < 4:
-            if self.player_1_points == 2:
-                player_1_pointsres = "Thirty"
-            if self.player_1_points == 3:
-                player_1_pointsres = "Forty"
-            if self.player_2_points == 1:
-                player_2_pointsres = "Fifteen"
-            if self.player_2_points == 2:
-                player_2_pointsres = "Thirty"
-            result = player_1_pointsres + "-" + player_2_pointsres
-        if self.player_2_points>self.player_1_points and self.player_2_points < 4:
-            if self.player_2_points == 2:
-                player_2_pointsres = "Thirty"
-            if self.player_2_points == 3:
-                player_2_pointsres = "Forty"
-            if self.player_1_points == 1:
-                player_1_pointsres = "Fifteen"
-            if self.player_1_points == 2:
-                player_1_pointsres = "Thirty"
-            result = player_1_pointsres + "-" + player_2_pointsres
+        player_1_points_result = ""
+        player_2_points_result = ""
+        if self.player_1_points < 4 and self.player_2_points < 4:
+            player_1_points_result = score_name[self.player_1_points]
+            player_2_points_result = score_name[self.player_2_points]
+            result = player_1_points_result + "-" + player_2_points_result
+            return result
 
         if self.player_1_points > self.player_2_points and self.player_2_points >= 3:
             result = "Advantage " + self.player_1_name
