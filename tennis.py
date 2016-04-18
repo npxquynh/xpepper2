@@ -96,9 +96,9 @@ class TennisGame2:
         if self.player_2_points > self.player_1_points and self.player_1_points >= 3:
             result = "Advantage " + self.player_2_name
 
-        if self.player_1_points >= 4 and self.player_2_points >= 0 and (self.player_1_points-self.player_2_points) >= 2:
+        if self.player_1_points >= 4 and (self.player_1_points-self.player_2_points) >= 2:
             result = "Win for " + self.player_1_name
-        if self.player_2_points >= 4 and self.player_1_points >= 0 and (self.player_2_points-self.player_1_points) >= 2:
+        if self.player_2_points >= 4 and (self.player_2_points-self.player_1_points) >= 2:
             result = "Win for " + self.player_2_name
         return result
 
